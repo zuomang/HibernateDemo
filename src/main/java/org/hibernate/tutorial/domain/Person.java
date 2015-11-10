@@ -11,7 +11,9 @@ public class Person {
     private int age;
     private String firstname;
     private String lastname;
+//    使用set 原因: 1 set 不能包含重复元素, 2 无序
     private Set events = new HashSet();
+    private Set emailAddresses = new HashSet();
 
     public Person() {
     }
@@ -54,6 +56,24 @@ public class Person {
 
     public void setEvents(Set events) {
         this.events = events;
+    }
+
+    public Set getEmailAddresses() {
+        return emailAddresses;
+    }
+
+    public void setEmailAddresses(Set emailAddresses) {
+        this.emailAddresses = emailAddresses;
+    }
+
+    public void addToEvent(Event event) {
+        this.getEvents().add(event);
+        event.getParticipants().add(this);
+    }
+
+    public void removeFromEvent(Event event) {
+        this.getEvents().remove(event);
+        event.getParticipants().remove(this);
     }
 
     @Override

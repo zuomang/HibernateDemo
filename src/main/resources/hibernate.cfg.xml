@@ -9,11 +9,26 @@
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">qwaszx12</property>
 
+        <!--maximum number of pooled connections-->
+        <!--<property name="hibernate.connection.pool_size">1</property>-->
+        <property name="hibernate.c3p0.min_size">5</property>
+        <property name="hibernate.c3p0.max_size">20</property>
+        <property name="hibernate.c3p0.timeout">1800</property>
+        <property name="hibernate.c3p0.max_statements">50</property>
+
         <property name="show_sql">true</property>
+
+        <!--set hibernate dialect and make mysql to automatic build table-->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
 
+        <!--使用 HibernateUtil.getSessionFactory().getCurrentSession() 时需要配置该属性-->
+        <!-- Enable Hibernate's automatic session context management -->
         <property name="current_session_context_class">thread</property>
+
+        <!-- Disable the second-level cache  -->
+        <!--org.hibernate.cache.internal.NoCacheProvider has been deprecated for quite a long time now(since 3.3)-->
+        <property name="cache.provider_class">org.hibernate.cache.internal.NoCachingRegionFactory</property>
 
         <mapping resource="org/hibernate/tutorial/domain/Event.hbm.xml"></mapping>
         <mapping resource="org/hibernate/tutorial/domain/Person.hbm.xml"></mapping>

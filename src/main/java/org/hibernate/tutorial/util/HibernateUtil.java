@@ -11,6 +11,11 @@ public class HibernateUtil {
 
     private static SessionFactory buildSessionFactory() {
         try {
+//            hibernate4中，构建SessionFactory 需要加入参数ServiceRegistry
+//            hibernate4中已经把原有的SessionFactory sessions = cfg.buildSessionFactory();
+//            这种方法标记为过时的了
+//            return new Configuration().configure().buildSessionFactory(
+//                    new StandardServiceRegistryBuilder().build() );
             Configuration cfg = new Configuration().configure();
             StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                     .applySettings(cfg.getProperties()).build();
